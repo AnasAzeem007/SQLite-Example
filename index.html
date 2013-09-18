@@ -14,12 +14,6 @@
             var version = '1.0';
             var displayName = 'WebSqlDB';
             var maxSize = 65535;
-            var dtab = window.sqlitePlugin.openDatabase({name : "dbname.db"});
-	    if(dtab == null){
-	        alert("not null");
-	    } else{
-	    	alert("null");
-	    }
             function errorHandler(transaction, error) {
                 alert('Error: ' + error.message + ' code: ' + error.code);
             }
@@ -36,6 +30,12 @@
                     alert('Databases are not supported in this browser.');
                     return;
                 }
+	    	var dtab = window.sqlitePlugin.openDatabase({name : "dbname.db"});
+		if(dtab == null){
+		        alert("not null");
+		} else{
+		  	alert("null");
+		}
                 db = openDatabase(shortName, version, displayName, maxSize);
                 db.transaction(function(tx) {
                     tx.executeSql('CREATE TABLE IF NOT EXISTS User(UserId INTEGER NOT NULL PRIMARY KEY, FirstName TEXT NOT NULL, LastName TEXT NOT NULL)', [], nullHandler, errorHandler);
