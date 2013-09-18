@@ -5,8 +5,8 @@
         <meta http-equiv="Content-type" content="text/html;charset=utf-8">
 
         <title>Embedded Sql Example</title>
-        <!--<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>-->
-        <script type = "text/javascript" charset="utf-8" src="jquery-1.8.0.min.js"></script> 
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type = "text/javascript" charset="utf-8" src="jquery.min.js"></script> 
         <script type="text/javascript" charset= "utf-8">
             var db;
             var shortName = 'WebSqlDB';
@@ -31,7 +31,9 @@
                 }
                 db = openDatabase(shortName, version, displayName, maxSize);
                 db.transaction(function(tx) {
-                    tx.executeSql('CREATE TABLE IF NOT EXISTS User(UserId INTEGER NOT NULL PRIMARY KEY, FirstName TEXT NOT NULL, LastName TEXT NOT NULL)', [], nullHandler, errorHandler);
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS User(UserId INTEGER NOT NULL PRIMARY KEY, FirstName TEXT NOT 
+
+NULL, LastName TEXT NOT NULL)', [], nullHandler, errorHandler);
                 }, errorHandler, successCallBack);
             }
             function ListDBValues() {
@@ -47,7 +49,6 @@
                                 if (result != null && result.rows != null) {
                                     for (var i = 0; i < result.rows.length; i++) {
                                         var row = result.rows.item(i);
-                                        alert(row.firstName);
                                         $('#lbUsers').append('<br>' + row.UserId + '. ' +
                                                 row.FirstName + ' ' + row.LastName);
                                     }
@@ -64,13 +65,14 @@
                     return;
                 }
                 db.transaction(function(transaction) {
-                    transaction.executeSql('INSERT INTO User(FirstName, LastName)VALUES (?,?)', [$('#txFirstName').val(), $('#txLastName').val()], nullHandler, errorHandler);
+                    transaction.executeSql('INSERT INTO User(FirstName, LastName)VALUES (?,?)', [$('#txFirstName').val(), 
+
+$('#txLastName').val()], nullHandler, errorHandler);
                 });
                 ListDBValues();
                 return false;
                }catch(e){
-                   alert("inside catch");
-                   alert(e.message);
+                  alert(e.message);
                }
 
             }</script>
