@@ -15,9 +15,11 @@
             var displayName = 'WebSqlDB';
             var maxSize = 65535;
             var db = window.sqlitePlugin.openDatabase({name : "dbname.db"});
-	        if(db == null){
-		        alert(null);
-	        }
+	    if(db == null){
+	        alert("not null");
+	    } else{
+	    	alert("null");
+	    }
             function errorHandler(transaction, error) {
                 alert('Error: ' + error.message + ' code: ' + error.code);
             }
