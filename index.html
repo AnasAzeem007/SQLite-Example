@@ -30,12 +30,16 @@
                     alert('Databases are not supported in this browser.');
                     return;
                 }
-	 //   	var dtab = window.sqlitePlugin.openDatabase({name : "dbname.db"});
-		// if(dtab == null){
-		//         alert("not null");
-		// } else{
-		//   	alert("null");
-		// }
+                try{
+	    	var dtab = window.sqlitePlugin.openDatabase({name : "dbname.db"});
+		 if(dtab == null){
+		         alert("not null");
+		 } else{
+		   	alert("null");
+		 }
+                }catch(e){
+                	alert("Catch : "+e.message());
+                }
                 db = openDatabase(shortName, version, displayName, maxSize);
                 db.transaction(function(tx) {
                     tx.executeSql('CREATE TABLE IF NOT EXISTS User(UserId INTEGER NOT NULL PRIMARY KEY, FirstName TEXT NOT NULL, LastName TEXT NOT NULL)', [], nullHandler, errorHandler);
