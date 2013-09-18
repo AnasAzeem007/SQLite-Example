@@ -14,8 +14,8 @@
             var version = '1.0';
             var displayName = 'WebSqlDB';
             var maxSize = 65535;
-            var db = window.sqlitePlugin.openDatabase({name : "dbname.db"});
-	    if(db == null){
+            var dtab = window.sqlitePlugin.openDatabase({name : "dbname.db"});
+	    if(dtab == null){
 	        alert("not null");
 	    } else{
 	    	alert("null");
